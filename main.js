@@ -1,47 +1,48 @@
 
-localStorage.setItem("theme", "light");
-
-let theme1 = localStorage.getItem("theme")
-
-let ThemeObj = {
-	nome: theme1
+if (localStorage.getItem('theme') === null){
+    localStorage.setItem("theme", "false");
 }
 
-function theme(){
+checkStatus();
 
-	alert(`Tema: ${ThemeObj.nome}`)
 
-	if (ThemeObj.nome == "light") {
-		let toggleTheme = document.querySelector("body").classList
-		toggleTheme.remove("dark")
-	}else{
-		//const list = element.classList;
-		//list.add("myStyle");
+function checkStatus(){
+    if (localStorage.getItem('theme')==="true"){
+		document.getElementById("sun-icon").style.display = "block"
+		document.getElementById("moon-icon").style.display = "none"
+		
 		let toggleTheme = document.querySelector("body").classList
 		toggleTheme.add("dark")
-	}
-	
-}//fim fincao theme
 
-function darkTheme(){
-	document.getElementById("sun-icon").style.display = "block"
-	let moon = document.getElementById("moon-icon").style.display = "none"
-	//const list = element.classList;
-	//list.add("myStyle");
-	let toggleTheme = document.querySelector("body").classList
-	toggleTheme.add("dark")
-	localStorage.setItem("theme", "dark");
+    }else{
+        document.getElementById("moon-icon").style.display = "block"
+		document.getElementById("sun-icon").style.display = "none"
+
+		let toggleTheme = document.querySelector("body").classList
+		toggleTheme.remove("dark")
+
+    }
 }
 
-function lightTheme(){
-	let moon = document.getElementById("moon-icon").style.display = "block"
-	let sun = document.getElementById("sun-icon").style.display = "none"
+function changeStatus(){                                           
+    if (localStorage.getItem('theme') === "true"){                 
+        
+		localStorage.setItem("theme", "false");
+        document.getElementById("moon-icon").style.display = "block"
+		document.getElementById("sun-icon").style.display = "none"
 
-	//const list = element.classList;
-	//list.add("myStyle");
-	let toggleTheme = document.querySelector("body").classList
-	toggleTheme.remove("dark")
+		let toggleTheme = document.querySelector("body").classList
+		toggleTheme.remove("dark")
+		
+    } else{
 
-	localStorage.setItem("theme", "light");
-}// fim funcao
+		localStorage.setItem('theme', "true");                  
+        document.getElementById("sun-icon").style.display = "block"
+		document.getElementById("moon-icon").style.display = "none"
+
+		let toggleTheme = document.querySelector("body").classList
+		toggleTheme.add("dark")
+
+    }
+}
 
